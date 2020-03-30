@@ -2,12 +2,27 @@ import React, { Component } from "react";
 import { debounce } from 'lodash';
 import { connect } from "react-redux";
 import * as actionTypes from './store/actionTypes';
+import Radium from 'radium';
 
 class ReactRedux extends Component {
+  lblClass = {
+    backgroundColor: 'green',
+    color: 'white',
+    width: '300px',
+    height: '30px',
+    margin: '10px',
+    padding: '10px',
+    textAlign: 'center',
+    ':hover': {
+      backgroundColor: 'red',
+      color: 'black'
+    }
+  }
   render() {
     return (
       <>
-        <label>{this.props.cntr}</label>
+        <div style={this.lblClass}><label>{this.props.cntr}</label></div>
+        
         <br />
         <button onClick={this.props.onIncrementBy1Counter}>
           Increment By 1
@@ -59,4 +74,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(ReactRedux));
