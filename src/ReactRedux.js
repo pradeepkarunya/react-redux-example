@@ -2,17 +2,29 @@ import React, { Component } from "react";
 import { debounce } from 'lodash';
 import { connect } from "react-redux";
 import * as actionTypes from './store/actionTypes';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 class ReactRedux extends Component {
   lblClass = {
-    backgroundColor: 'green',
-    color: 'white',
-    width: '300px',
-    height: '30px',
-    margin: '10px',
-    padding: '10px',
-    textAlign: 'center',
+    'lableClass':{
+      backgroundColor: 'green',
+      color: 'white',
+      padding: '25px'
+    },
+    'mainDiv': {
+      width: '500px',
+      height: '200px',
+      margin: '10px',
+      padding: '10px',
+      textAlign: 'center',
+      clear: 'both'
+    },
+    'btnClass': {
+      marginTop: '10px',
+      clear: 'both', 
+      display: 'flex',
+      flexDirection: 'row'
+    },
     ':hover': {
       backgroundColor: 'red',
       color: 'black'
@@ -21,9 +33,13 @@ class ReactRedux extends Component {
   render() {
     return (
       <>
-        <div style={this.lblClass}><label>{this.props.cntr}</label></div>
+        <StyleRoot>
+        <div style={this.lblClass.mainDiv}>
+        
+        <label style={this.lblClass.lableClass}>{this.props.cntr}</label>
         
         <br />
+        <div style={this.lblClass.btnClass}>
         <button onClick={this.props.onIncrementBy1Counter}>
           Increment By 1
         </button>
@@ -39,6 +55,7 @@ class ReactRedux extends Component {
         <button onClick={this.props.onDecrementBy10Counter}>
           Decrement By 10
         </button>
+        </div>
         <hr />
         <button onClick={()=>this.props.onStoreResult(this.props.cntr)}>Track the Store</button>
         <ul>
@@ -51,6 +68,8 @@ class ReactRedux extends Component {
             </li>
           ))}
         </ul>
+        </div>
+        </StyleRoot>
       </>
     );
   }
